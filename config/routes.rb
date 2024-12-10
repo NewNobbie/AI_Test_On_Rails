@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   get "response/index"
   get "response/show"
@@ -17,8 +19,13 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  resources :forms
+  mount Sidekiq::Web => '/sidekiq'
 
+  resources :forms do
+    collection do 
+      post :enqueue
+    end 
+  end   
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "forms#index"
 end

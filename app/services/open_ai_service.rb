@@ -5,11 +5,11 @@ class OpenAiService
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = uri.scheme == 'https' # Habilita SSL si es HTTPS
       ask = {
-        model: "gpt-4",  # Puedes cambiar el modelo a "gpt-3.5-turbo" si lo prefieres
+        model: "gpt-4",
         messages: [
           { role: "system", content: "You are a helpful assistant." },
           { role: "user", content: description },  # Aquí el mensaje del usuario
-          { role: "assistant", content: "Summarize the content in 5 words or less, and delete the dot at the final" }
+          { role: "assistant", content: "Its a mandatory that the summarize be 5 words lenght or less" }
         ],
         temperature: 0.7,
         max_tokens: 20
@@ -59,6 +59,43 @@ class OpenAiService
 
       if response.code.to_i.between?(200, 299)
         { success: true, data: response_body["choices"].first["message"]["content"]}
+      else
+        { success: false, error: response_body["error"] || "Unknown error" }
+      end
+    rescue StandardError => e
+      if (retries += 1) <= 3
+        retry
+      else
+        { success: false, error: "Error after 3 retries: #{e.message}" }
+      end
+    end
+
+    def evaluate_prompt(description:)
+      retries ||= 0
+      uri = URI(ENV["URL"])
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = uri.scheme == 'https'
+
+      ask = {
+        model: "gpt-4",
+        messages: [
+          { role: "system", content: "You are a helpful assistant that evaluates prompt ty." },
+          { role: "user", content: description },
+          { role: "assistant", content: "Rate the prompt on a scale from 1 to 10, with 10 being excellent and 1 being poor. Provice a short explanation of your score." }
+        ],
+        temperature: 0.7,
+        max_tokens: 50
+      }
+
+
+      request = Net::HTTP::Post.new(uri.path, headers)
+      request.body = ask.to_json
+
+      response = http.request(request)
+      response_body = JSON.parse(response.body)
+
+      if response.code.to_i.between?(200, 299)
+        { success: true, data: response_body["choices"].first["message"]["content"] }
       else
         { success: false, error: response_body["error"] || "Unknown error" }
       end

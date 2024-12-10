@@ -16,14 +16,13 @@ class FormsController < ApplicationController
   def create 
     @form = Form.new(form_params)
     
-    
     # Call the service
     ai_service = OpenAiService.new
     title_result = ai_service.generate_title(description: @form.description)
     Rails.logger.info "Generating Title result: #{title_result.inspect}"
 
     if title_result[:success]
-      @form.name = title_result[:data].strip
+      @form.name = title_result[:data].strip[0..49]
       # @form.update(name: title_result[:data].strip)
     else
       Rails.logger.warn "Title generation failed: #{title_result[:error]}"
@@ -42,7 +41,7 @@ class FormsController < ApplicationController
           ia_response: ai_result[:data],
           status: "completed"
         )
-    
+        
         redirect_to @form, notice: 'Form was successfully created'  
       else
         redirect_to @form, notice: "Form saved, but OpenAI failed: #{ai_result[:error]}"  
@@ -50,8 +49,22 @@ class FormsController < ApplicationController
     else
       Rails.logger.warn "Form save failed: #{@form.errors.full_messages}"
       render :index, status: :unprocessable_entity
-    end    
-  end
+    end
+  end  
+
+  def enqueue
+    @form = Form.new(form_params)
+
+    if @form.save
+      OpenAiJob.perform_later(@form.id)
+
+      redirect_to @form, 'Form was successfully enqueued for processing'
+    else
+      Rails.logger.warn "Form enqueue failed: #{@form.errors.full_messages}"
+      @forms = Form.includes(:responses).order(created_at: :desc)
+      render :index, status: :unprocessable_entity
+    end  
+  end  
 
   private 
 
@@ -59,4 +72,4 @@ class FormsController < ApplicationController
     params.require(:form).permit(:description)
   end    
 
-end  
+end 
