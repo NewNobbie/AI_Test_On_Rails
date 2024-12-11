@@ -1,18 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  get "response/index"
-  get "response/show"
-  get "response/new"
-  get "response/edit"
-  get "forms/index"
-  get "forms/show"
-  get "forms/new"
-  get "forms/edit"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Render dynamic PWA files from app/views/pwa/*
@@ -21,11 +11,15 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => '/sidekiq'
 
-  resources :forms do
-    collection do 
-      post :enqueue
-    end 
-  end   
+  scope "(:locale)", locale: /es|en|ru|ja/ do
+    resources :forms do
+      collection do 
+        post :enqueue
+      end 
+
+      resources :responses, only: [:index, :show, :new, :create]
+    end
+  end     
   # Defines the root path route ("/")
   root "forms#index"
 end

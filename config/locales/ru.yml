@@ -1,0 +1,26 @@
+ru:
+  forms:
+    form:
+      title: "Создайте новое сообщение"
+      description_label: "Введите описание вашего сообщения"
+      submit_button: "Отправить"
+      enqueue_button: "Склеивание"
+    show:
+      title: "Детали формы"
+      name: "Название"
+      message: "Сообщение"
+      created_at: "Создано на"
+      response: "Ответ"
+      status: "Статус"
+      no_responses: "Пока нет ответов на эту форму."
+    index:
+      title: "История подсказок"
+      select_language: "Выберите язык"
+      title_label: "Название"
+      message_label: "Сообщение"
+      created_at_label: "Создано в"
+      response_label: "Ответ"
+      status_label: "Статус"
+      no_responses: "Для этой формы пока нет ответов."
+      show_button: "Показать"
+      no_prompts: "Подсказки пока не доступны."    

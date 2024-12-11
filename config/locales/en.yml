@@ -28,4 +28,30 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  forms:
+    form:
+      title: "Create a New Prompt"
+      description_label: "Enter your prompt description"
+      submit_button: "Submit"
+      enqueue_button: "Enqueue"
+    show:
+      title: "Form Details"
+      name: "Title"
+      message: "Message"
+      created_at: "Created at"
+      response: "Response"
+      status: "Status"
+      no_responses: "No responses yet for this form."
+    index:
+      title: "Prompt History"
+      select_language: "Select Language"
+      title_label: "Title"
+      message_label: "Message"
+      created_at_label: "Created at"
+      response_label: "Response"
+      status_label: "Status"
+      no_responses: "No responses yet for this form."
+      show_button: "Show"
+      no_prompts: "No prompts available yet."  
+
+

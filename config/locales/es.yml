@@ -1,0 +1,28 @@
+es:
+  forms:
+    form:
+      title: "Crea un nuevo mensaje"
+      description_label: "Introduce la descripción de tu mensaje"
+      submit_button: "Enviar"
+      enqueue_button: "Encolar"
+    show:
+      title: "Detalles del formulario"
+      name: "Título"
+      message: "Mensaje"
+      created_at: "Creado el"
+      response: "Respuesta"
+      status: "Estado"
+      no_responses: "Aún no hay respuestas para este formulario."  
+    index: 
+      title: "Historial de Prompts"
+      select_language: "Seleccionar idioma"
+      title_label: "Título"
+      message_label: "Mensaje"
+      created_at_label: "Creado el"
+      response_label: "Respuesta"
+      status_label: "Estado"
+      no_responses: "Aún no hay respuestas para este formulario."
+      show_button: "Mostrar"
+      no_prompts: "No hay prompts disponibles aún."
+      
+

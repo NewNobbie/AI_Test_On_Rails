@@ -1,15 +1,15 @@
 <!-- app/views/forms/_form.html.erb -->
 <div class="p-4 bg-gray-100 rounded-lg shadow-md">
-  <h2 class="text-xl font-semibold text-gray-800 mb-4">Create a New Prompt</h2>
+  <h2 class="text-xl font-semibold text-gray-800 mb-4"><%= t('forms.form.title') %></h2>
 
   <%= form_with model: @form, url: forms_path, local: true, class: "space-y-4" do |f| %>
     <div>
-      <%= f.label :description, "Enter your prompt description", class: "block text-gray-700 font-medium" %>
+      <%= f.label :description, t('forms.form.description_label'), class: "block text-gray-700 font-medium" %>
       <%= f.text_area :description, rows: 3, class: "w-full p-2 border rounded-md" %>
     </div>
     <div>
-      <%= f.submit "Submit", class: "px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600" %>
-      <%= button_to "Enqueue", enqueue_forms_path, method: :post, style: "background-color: #6366F1; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem;" %>
+      <%= f.submit t('forms.form.submit_button'), class: "px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600" %>
+      <%= button_to t('forms.form.enqueue_button'), enqueue_forms_path, method: :post, style: "background-color: #6366F1; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem;" %>
 
     </div>
   <% end %>

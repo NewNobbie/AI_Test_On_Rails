@@ -1,0 +1,26 @@
+ja:
+  forms:
+    form:
+      title: "新しいメッセージを作成する"
+      description_label: "メッセージの説明を入力"
+      submit_button: "送信"
+      enqueue_button: "接着"
+    show:
+      title: "フォームの詳細"
+      name: "タイトル"
+      message: "メッセージ"
+      created_at: "作成日"
+      response: "応答"
+      status: "州"
+      no_responses: "このフォームへの回答はまだありません。"
+    index:
+      title: "プロンプトの歴史"
+      select_language: "言語選択"
+      title_label: "タイトル"
+      message_label: "メッセージ"
+      created_at_label: "で作成された。"
+      response_label: "応答"
+      status_label: "ステータス"
+      no_responses: "このフォームに対する回答はまだありません。"
+      show_button: "ショー"
+      no_prompts: "プロンプトはまだありません。"  

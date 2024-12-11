@@ -1,10 +1,10 @@
 <div class="container mx-auto p-6">
-  <h1 class="text-3xl font-bold text-gray-800 mb-6">Form Details</h1>
+  <h1 class="text-3xl font-bold text-gray-800 mb-6"><%= t('forms.show.title') %></h1>
 
   <div class="mb-6 p-4 bg-white rounded-lg shadow-md">
-    <h2 class="text-xl font-semibold text-gray-800">Title: <%= @form.name %></h2>
-    <p class="text-gray-600 mb-2">Message: <%= @form.description %></p>
-    <p class="text-sm text-gray-500">Created at: <%= @form.created_at.strftime("%B %d, %Y %H:%M") %></p>
+    <h2 class="text-xl font-semibold text-gray-800"><%= t('forms.show.name') %>: <%= @form.name %></h2>
+    <p class="text-gray-600 mb-2"><%= t('forms.show.message') %>: <%= @form.description %></p>
+    <p class="text-sm text-gray-500"><%= t('forms.show.created_at') %>: <%= @form.created_at.strftime("%B %d, %Y %H:%M") %></p>
   </div>
 
   <!-- Responses -->
@@ -12,15 +12,15 @@
     <div class="mt-4 space-y-4">
       <% @form.responses.each do |response| %>
         <div class="p-3 border rounded-md bg-gray-50">
-          <p class="font-medium text-gray-700">Response:</p>
+          <p class="font-medium text-gray-700"><%= t('forms.show.response') %>: </p>
           <p class="text-gray-800"><%= response.ia_response %></p>
           <p class="text-sm text-gray-500">
-            Status: <%= response.status %> | Created at: <%= response.created_at.strftime("%B %d, %Y %H:%M") %>
+            <%= t('forms.show.status') %>: <%= response.status %> | <%= t('forms.show.created_at') %>: <%= response.created_at.strftime("%B %d, %Y %H:%M") %>
           </p>
         </div>
       <% end %>
     </div>
   <% else %>
-    <p class="text-sm text-gray-500 mt-4">No responses yet for this form.</p>
+    <p class="text-sm text-gray-500 mt-4"><%= t('forms.show.no_responses') %></p>
   <% end %>
 </div>
