@@ -107,12 +107,12 @@ GEM
     drb (2.2.1)
     erubi (1.13.0)
     event_stream_parser (1.0.0)
-    faraday (2.12.1)
+    faraday (2.12.2)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
-    faraday-multipart (1.0.4)
-      multipart-post (~> 2)
+    faraday-multipart (1.1.0)
+      multipart-post (~> 2.0)
     faraday-net_http (3.4.0)
       net-http (>= 0.5.0)
     globalid (1.2.1)
@@ -130,9 +130,9 @@ GEM
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    json (2.9.0)
+    json (2.10.0)
     language_server-protocol (3.17.0.3)
-    logger (1.6.2)
+    logger (1.6.5)
     loofah (2.23.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -251,7 +251,7 @@ GEM
       rubocop-minitest
       rubocop-performance
       rubocop-rails
-    ruby-openai (6.5.0)
+    ruby-openai (7.4.0)
       event_stream_parser (>= 0.3.0, < 2.0.0)
       faraday (>= 1)
       faraday-multipart (>= 1)
@@ -328,7 +328,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 7.2.2)
   rubocop-rails-omakase
-  ruby-openai (~> 6.3)
+  ruby-openai (~> 7.4)
   selenium-webdriver
   sidekiq
   sprockets-rails
